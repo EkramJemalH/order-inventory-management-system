@@ -1,0 +1,8 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+allowBuilds:
+  esbuild: true
+fetchRetries: 10
+fetchRetryMaxtimeout: 1800000
+fetchTimeout: 1800000

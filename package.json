@@ -1,0 +1,20 @@
+{
+  "name": "order-inventory-management-system",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter @repo/web dev",
+    "dev:api": "pnpm --filter @repo/api dev",
+    "dev": "pnpm --parallel --filter @repo/web --filter @repo/api dev",
+    "build": "pnpm --recursive run build",
+    "test": "pnpm --filter @repo/api test",
+    "typecheck": "pnpm --filter @repo/validation typecheck && pnpm --filter @repo/db typecheck && pnpm --filter @repo/api typecheck",
+    "db:generate": "pnpm --filter @repo/db db:generate",
+    "db:migrate": "pnpm --filter @repo/db db:migrate",
+    "db:studio": "pnpm --filter @repo/db db:studio",
+    "db:push": "pnpm --filter @repo/db db:push"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
