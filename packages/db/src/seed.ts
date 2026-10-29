@@ -146,7 +146,7 @@ async function seed() {
           sku: prod.sku,
           name: prod.name,
           categoryId: prod.categoryId,
-          unit: prod.unit,
+          unitOfMeasure: prod.unit,
           retailPrice: prod.retailPrice,
           defaultWholesalePrice: prod.wholesalePrice,
           costPrice: prod.costPrice,
