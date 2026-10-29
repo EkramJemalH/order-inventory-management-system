@@ -46,7 +46,7 @@ export const returns = pgTable("returns", {
   requestedAt: timestamp("requested_at", { withTimezone: true }).defaultNow().notNull(),
   inspectedAt: timestamp("inspected_at", { withTimezone: true }),
   resolvedAt: timestamp("resolved_at", { withTimezone: true }),
-  inspectedBy: uuid("inspected_by").references(() => users.id, { onDelete: "set null" }),
+  inspectedBy: text("inspected_by").references(() => users.id, { onDelete: "set null" }),
   notes: text("notes"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
@@ -85,7 +85,7 @@ export const refunds = pgTable("refunds", {
   status: refundStatusEnum("status").default("COMPLETED").notNull(),
   transactionReference: varchar("transaction_reference", { length: 100 }),
   notes: text("notes"),
-  processedBy: uuid("processed_by").references(() => users.id, { onDelete: "set null" }),
+  processedBy: text("processed_by").references(() => users.id, { onDelete: "set null" }),
   refundedAt: timestamp("refunded_at", { withTimezone: true }).defaultNow().notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });

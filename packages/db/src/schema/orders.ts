@@ -54,7 +54,7 @@ export const orders = pgTable("orders", {
   returnToken: varchar("return_token", { length: 64 }).unique(),
   returnTokenExpiresAt: timestamp("return_token_expires_at", { withTimezone: true }),
   notes: text("notes"),
-  createdBy: uuid("created_by").references(() => users.id, { onDelete: "set null" }),
+  createdBy: text("created_by").references(() => users.id, { onDelete: "set null" }),
   orderDate: timestamp("order_date", { withTimezone: true }).defaultNow().notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),

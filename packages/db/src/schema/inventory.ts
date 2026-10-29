@@ -48,7 +48,7 @@ export const stockReceipts = pgTable("stock_receipts", {
   supplierId: uuid("supplier_id")
     .notNull()
     .references(() => suppliers.id, { onDelete: "restrict" }),
-  receivedBy: uuid("received_by").references(() => users.id, { onDelete: "set null" }),
+  receivedBy: text("received_by").references(() => users.id, { onDelete: "set null" }),
   receiptDate: timestamp("receipt_date", { withTimezone: true }).defaultNow().notNull(),
   totalCost: numeric("total_cost", { precision: 10, scale: 2 }).notNull().default("0.00"),
   notes: text("notes"),
@@ -98,7 +98,7 @@ export const stockMovements = pgTable("stock_movements", {
   referenceType: varchar("reference_type", { length: 50 }), // 'stock_receipt', 'order', 'return', 'manual_adjustment'
   referenceId: uuid("reference_id"),
   reason: text("reason"),
-  performedBy: uuid("performed_by").references(() => users.id, { onDelete: "set null" }),
+  performedBy: text("performed_by").references(() => users.id, { onDelete: "set null" }),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
 

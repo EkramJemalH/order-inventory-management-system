@@ -1,6 +1,8 @@
 import { Elysia } from "elysia";
 import { swaggerPlugin } from "./plugins/swagger";
 import { corsPlugin } from "./plugins/cors";
+import { auth } from "./lib/auth";
+import { sessionPlugin, authzPlugin } from "./authz";
 import { categoriesController } from "./modules/categories/categories.controller";
 import { productsController } from "./modules/products/products.controller";
 import { suppliersController } from "./modules/suppliers/suppliers.controller";
@@ -16,6 +18,9 @@ const port = Number(process.env.PORT) || 3001;
 export const app = new Elysia()
   .use(corsPlugin)
   .use(swaggerPlugin)
+  .use(sessionPlugin)
+  .use(authzPlugin)
+  .all("/api/auth/*", ({ request }) => auth.handler(request))
   .get(
     "/health",
     () => ({
@@ -34,6 +39,11 @@ export const app = new Elysia()
   .group("/api/v1", (app) =>
     app
       .get("/health", () => ({ status: "ok", timestamp: new Date().toISOString() }))
+      .get("/auth/me", ({ user, session }) => ({
+        success: true,
+        authenticated: Boolean(user),
+        data: user ? { user, session } : null,
+      }))
       .use(categoriesController)
       .use(productsController)
       .use(suppliersController)

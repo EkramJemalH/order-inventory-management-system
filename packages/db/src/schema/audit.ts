@@ -3,7 +3,7 @@ import { users } from "./users";
 
 export const auditEvents = pgTable("audit_events", {
   id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id").references(() => users.id, { onDelete: "set null" }),
+  userId: text("user_id").references(() => users.id, { onDelete: "set null" }),
   action: varchar("action", { length: 100 }).notNull(), // e.g. "ORDER_CREATED", "STOCK_ADJUSTED", "PAYMENT_RECORDED"
   entityType: varchar("entity_type", { length: 50 }).notNull(), // e.g. "Order", "Product", "Payment"
   entityId: varchar("entity_id", { length: 100 }).notNull(),

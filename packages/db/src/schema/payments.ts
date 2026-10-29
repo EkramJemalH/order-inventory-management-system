@@ -27,7 +27,7 @@ export const payments = pgTable("payments", {
   status: paymentRecordStatusEnum("status").default("COMPLETED").notNull(),
   transactionReference: varchar("transaction_reference", { length: 100 }),
   notes: text("notes"),
-  receivedBy: uuid("received_by").references(() => users.id, { onDelete: "set null" }),
+  receivedBy: text("received_by").references(() => users.id, { onDelete: "set null" }),
   paidAt: timestamp("paid_at", { withTimezone: true }).defaultNow().notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
