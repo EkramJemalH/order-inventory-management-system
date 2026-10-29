@@ -12,7 +12,8 @@
     "db:generate": "pnpm --filter @repo/db db:generate",
     "db:migrate": "pnpm --filter @repo/db db:migrate",
     "db:studio": "pnpm --filter @repo/db db:studio",
-    "db:push": "pnpm --filter @repo/db db:push"
+    "db:push": "pnpm --filter @repo/db db:push",
+    "db:seed": "pnpm --filter @repo/db db:seed"
   },
   "devDependencies": {
     "typescript": "^5.7.3"
